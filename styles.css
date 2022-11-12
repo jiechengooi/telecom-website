@@ -1,0 +1,763 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@400;700&family=Poiret+One&family=Rock+Salt&display=swap");
+/*Global styles*/
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 62.5%;
+  --main-font: "Rocksalt", cursive;
+  --secondary-font: "Poiret One", cursive;
+  --body-font: "Montserrat", sans-serif;
+  --light-green: #45EBA5;
+  --blue: #18A0FB;
+  --light-blue: #A3DBFB;
+  --white: #e2f3f5;
+  --background-color: #2D3134;
+}
+
+html {
+  font-family: var(--body-font), sans-serif;
+  color: var(--white);
+  scroll-behavior: smooth;
+}
+
+section {
+  padding: 3.9rem 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  font-family: var(--body-font);
+  font-weight: 700;
+  color: var(--blue);
+}
+
+p {
+  font-family: var(--body-font);
+  font-size: 1.8rem;
+  color: var(--white);
+}
+
+.container {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 2.4rem;
+}
+
+/* h1 headline for each section */
+
+.headline {
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 3rem 0 -.1rem 0;
+  padding: 2rem 10rem;
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 3.2rem;
+  color: var(--light-blue);
+  filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 1));
+}
+
+/* paragraph description for each section */
+
+.description {
+  padding: 0 8rem;
+  text-justify: distribute;
+  text-align: justify;
+  margin-bottom: 3rem;
+}
+
+/* a collection of cards for features and prices */
+
+.boxcards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  gap: 3rem;
+  margin: 3rem 0;
+}
+
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 250px;
+  height: 250px;
+  padding: 2rem;
+  background: #2D3134;
+  box-shadow: 10px 10px 16px 0 rgba(0, 0, 0, 0.25), -6px -6px 10px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 25px;
+  transition: all .5s ease-in-out;
+}
+
+.card p {
+  text-align: justify;
+  text-justify: distribute;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  padding: 2rem 0;
+  text-shadow: -1px -1px 8px rgba(224, 208, 208, 0.644);
+}
+
+.card h5 {
+  font-weight: 700;
+  font-size: 2.4rem;
+  text-align: center;
+  color: var(--light-green);
+  text-shadow: 0 0 8px var(--light-green);
+  position: relative;
+}
+
+/*************** font-awesome icons ****************/
+
+/* menu */
+
+.fa-bars {
+  display: block;
+}
+
+/* close menu */
+
+.fa-times {
+  display: none;
+}
+
+/* check-mark  */
+
+.fa-check {
+  color: var(--light-green);
+  font-size: 4rem;
+  text-align: center;
+  text-shadow: 0 0 8px var(--light-green);
+  margin: 1rem 0;
+}
+
+/************************************************************************************************************/
+
+/******************************************* H E A D E R / N A V *******************************************/
+
+/**********************************************************************************************************/
+
+header {
+  display: flex;
+  width: 100vw;
+  height: 5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), transparent);
+}
+
+.logo {
+  padding-top: 20px;
+  width: 120px;
+  height: 150px;
+}
+
+.logo img {
+  width: 100%;
+  height: 100%;
+}
+
+/*** mobile menu toggle ***/
+
+.menu-toggle {
+  color: var(--white);
+  text-shadow: 2px 2px 4px #232225;
+  font-size: 3rem;
+  cursor: pointer;
+  position: fixed;
+  top: 30px;
+  right: 20px;
+  z-index: 1500;
+  transition: color .5s;
+}
+
+.menu-toggle:hover {
+  color: var(--blue);
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+  list-style: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100vh;
+  background-color: #585858;
+  opacity: 0.9;
+  padding: 4.4rem;
+  z-index: 2000;
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+/* dark overlay behind nav when menu toggled on */
+
+.nav::before {
+  content: " ";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1300;
+  opacity: 0;
+  transform: scale(0);
+  transition: opacity 0.5s;
+}
+
+/* .open class is toggled on/off by main.js event listener every time 
+the menu-toggle is clicked */
+
+.open .fa-times {
+  display: block;
+}
+
+.open .fa-bars {
+  display: none;
+}
+
+.open .nav-list {
+  transform: translateX(0);
+}
+
+.open .nav::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.nav-link {
+  text-transform: uppercase;
+  font-size: 2rem;
+  transition: all 0.5s;
+}
+
+.nav-link:focus, .nav-link:hover, .nav-link:active {
+  color: var(--white);
+}
+
+/*********************************************************************************************************/
+
+/****************************************** H O M E section *********************************************/
+
+/*******************************************************************************************************/
+
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url("images/hero.jpg") center no-repeat;
+  background-size: cover;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  display: flex;
+  max-width: 75vw;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+  top: 100px;
+  right: -100px;
+}
+
+.hero-content .headline {
+  text-shadow: 0 0 15px rgba(0, 0, 0, .75);
+  font-size: 4rem;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.green-text {
+  color: var(--light-green);
+  opacity: .75;
+}
+
+.hero-content .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  right: 12px;
+}
+
+.cta-btn {
+  min-width: 120px;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  background-color: var(--light-blue);
+  padding: 12px;
+  margin: 12px;
+  color: #000;
+  transition: all 0.5s;
+}
+
+.cta-btn:focus, .cta-btn:hover, .cta-btn:active {
+  color: var(--white);
+  background-color: var(--blue);
+  box-shadow: 0px 0px 10px 0px #000000 inset;
+}
+
+
+
+/************* animated bubbles *********************/
+
+.bubbles {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bubbles img {
+  transform: scale(0);
+  opacity: 0;
+  animation: bubble 8s linear infinite;
+}
+
+.bubbles img:nth-child(1) {
+  animation-delay: 2.5s;
+  width: 50px;
+}
+
+.bubbles img:nth-child(2) {
+  animation-delay: 1s;
+  width: 40px;
+}
+
+.bubbles img:nth-child(3) {
+  animation-delay: 4s;
+  width: 25px;
+}
+
+.bubbles img:nth-child(4) {
+  animation-delay: 3.5s;
+  width: 50px;
+}
+
+.bubbles img:nth-child(5) {
+  animation-delay: 5s;
+  width: 30px;
+}
+
+.bubbles img:nth-child(6) {
+  animation-delay: 1.5s;
+  width: 45px;
+}
+
+.bubbles img:nth-child(7) {
+  animation-delay: 6;
+  width: 35px;
+}
+
+.bubbles img:nth-child(8) {
+  animation-delay: 7s;
+  width: 50px;
+}
+
+/**************************************************************************************************************/
+
+/********************************************* A B O U T section *********************************************/
+
+/************************************************************************************************************/
+
+#about {
+  background-color: var(--background-color);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/********************************************************************************************************************/
+
+/********************************************** G A L L E R Y section **********************************************/
+
+/******************************************************************************************************************/
+
+#gallery {
+  background-color: var(--background-color);
+  align-items: center;
+}
+
+.gallery-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slideshow container */
+
+.gallery-content .slideshow-container {
+  max-width: 90%;
+  position: relative;
+  margin: 3rem auto;
+}
+
+/* Hide the gallery images by default */
+
+.galleryImage {
+  display: none;
+}
+
+/* fade-in image */
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+/* next/previous image slider arrows */
+
+.prev, .next {
+  color: var(--white);
+  font-size: 2.5rem;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+  padding: 16px;
+  transition: color 0.5s ease;
+}
+
+.prev {
+  left: -45px;
+  border-radius: 10px 0 0 10px;
+}
+
+.next {
+  right: -45px;
+  border-radius: 0 10px 10px 0;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--blue)
+}
+
+.galleryImage .caption-text {
+  color: var(--white);
+  text-shadow: 0px 0px 5px #000000;
+  font-size: 1.6rem;
+  padding: .8rem 1.2rem;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.galleryImage .number-text {
+  color: var(--white);
+  text-shadow: 0px 0px 5px #000000;
+  font-size: 1.6rem;
+  padding: .8rem 1.2rem;
+  position: absolute;
+  top: 0;
+}
+
+.dot {
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  margin: 5px;
+  background-color: var(--blue);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.5s ease;
+}
+
+.active, .dot:hover {
+  background-color: #12588659;
+}
+
+/******************************************************************************************************/
+
+/************************************** P R I C E S section ******************************************/
+
+/****************************************************************************************************/
+
+#prices {
+  background-color: var(--background-color);
+  align-items: center;
+  justify-content: center;
+}
+
+.prices-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* displays the card's 'gallon' data attribute */
+
+.prices-content .card:before {
+  content: attr(data-gallons);
+  font-size: 5.2rem;
+  font-weight: 700;
+  color: #525b6180;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.75), 2px 2px 1px #363636;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  opacity: 1;
+  transition: opacity .7s ease-in-out;
+}
+
+/* displays the card's 'price' data attribute */
+
+.prices-content .card:after {
+  content: attr(data-price);
+  font-size: 5.2rem;
+  font-weight: 700;
+  color: var(--light-green);
+  text-shadow: 0 0 8px var(--light-green);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity .7s ease-in-out;
+}
+
+/* on card hover - move card up slightly, fade out gallons, fade in price */
+
+.prices-content .card:hover, .prices-content .card:focus, .prices-content .card:active {
+  transform: translateY(-20px);
+  box-shadow: 0px 2px 6px 2px rgba(255, 255, 255, 0.3), -10px 12px 12px 2px rgba(0, 0, 0, 0.25);
+}
+
+.prices-content .card:hover:before {
+  opacity: 0;
+}
+
+.prices-content .card:hover:after {
+  opacity: 1;
+}
+
+/**************************************************************************************************/
+
+/************************************** F A Q section ********************************************/
+
+/************************************************************************************************/
+
+#faq {
+  background-color: #2D3134;
+  align-items: center;
+  justify-content: center;
+}
+
+.faq-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/***********************************************************************************************/
+
+/********************************** C O N T A C T section *************************************/
+
+/*********************************************************************************************/
+
+#contact {
+  background-color: var(--background-color);
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/*********************************************************************************************/
+
+/********************************** M E D I A queries ***************************************/
+
+/*******************************************************************************************/
+
+/* screens larger than 1035px */
+
+@media screen and (min-width: 1230px) {
+  .headline {
+    font-size: 4.8rem;
+  }
+  .hero-content .headline {
+    font-size: 6.2rem;
+  }
+  /* paragraph description for each section */
+  .description {
+    padding: 0 8rem;
+    text-justify: distribute;
+    text-align: justify;
+    margin-bottom: 3rem;
+    font-size: 2rem;
+    line-height: 3rem;
+    max-width: 70%;
+  }
+  .card p {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+  .card h5 {
+    font-size: 2.8rem;
+    line-height: 3rem;
+  }
+  .logo {
+    flex-shrink: 1;
+  }
+  .nav {
+    flex-grow: 1;
+  }
+  .menu-toggle {
+    visibility: hidden;
+    pointer-events: none;
+    min-width: 100px;
+  }
+  .nav-list {
+    flex-direction: row;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    top: initial;
+    left: initial;
+    transform: initial;
+    width: initial;
+    height: initial;
+    opacity: initial;
+    padding: initial;
+    margin: initial;
+    margin-right: 100px;
+    background-color: initial;
+    z-index: initial;
+    transform: initial;
+    transition: initial;
+  }
+  .nav-item {
+    margin: 0px 45px;
+  }
+  .nav-link {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin-left: -2px;
+  }
+  /******************* A B O U T section *******************/
+  .about-content .boxcards .card {
+    width: 350px;
+    height: 350px;
+    /* justify-content: center; */
+  }
+  .about-content .boxcards .card .fa-check {
+    font-size: 5.4rem;
+  }
+  /******************* G A L L E R Y section *******************/
+  #gallery {}
+  /******************* P R I C E S section *******************/
+  #prices {}
+  /******************* F A Q section *******************/
+  #faq {}
+  /******************* C O N T A C T section *******************/
+  #contact {}
+}
+
+/************************ A N I M A T I O N S **************************/
+
+/* slide-show gallery picture fade animation */
+
+@-webkit-keyframes fade {
+  from {
+    opacity: .2
+  }
+  to {
+    opacity: 1
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: .2
+  }
+  to {
+    opacity: 1
+  }
+}
+
+/* home page bubbles animation */
+
+@keyframes bubble {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(.1);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.footer {
+	background-color: #6c63ff;
+	height: 100px;
+}
+
+.footer p {
+	text-align: center;
+	padding-top: 45px;
+	color: white;
+}
